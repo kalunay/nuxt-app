@@ -1,0 +1,106 @@
+<script setup lang="ts">
+import type { IProducts } from '@/interfaces'
+
+interface Props {
+  product: IProducts
+}
+
+const props = defineProps<Props>()
+</script>
+<template>
+    <div class="product">
+        <div class="product__image">
+            <NuxtImg
+                :src="product.image"
+                quality="80"
+                format="webp"
+                preload
+            />
+            <div class="product__favorit"></div>
+        </div>
+        <div class="product__price">{{ product.price }} ₽ <span>{{ Math.ceil(product.price/2) }} ₽ × 2</span></div>
+        <div class="product__name">{{ product.name }}</div>
+        <NuxtLink to="#"></NuxtLink>
+    </div>            
+</template>
+
+<style lang="scss" scoped>
+
+.product {
+
+    position: relative;
+
+    & a {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    &__price {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 140%;
+        color: #000000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 20px;
+
+        @media (max-width: 768px) { 
+            flex-direction: column;
+            align-items: start;
+        }
+
+        & span {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 100%;
+            letter-spacing: -5%;
+            vertical-align: bottom;
+            color: #fff;
+            background: #000000;
+            padding: 2px;
+        }
+    }
+
+    &__name {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 140%;
+        letter-spacing: 0%;
+        vertical-align: bottom;
+        color: #000;
+    }
+
+    &__image {
+        position: relative;
+        padding-top: 56.25%;
+        width: 100%;
+        overflow: hidden;
+
+        & img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__favorit {
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 18px;
+        content: ' ';
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='20' height='19' viewBox='0 0 20 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M10 18.35L8.55 17.05C6.86667 15.5333 5.475 14.225 4.375 13.125C3.275 12.025 2.4 11.0375 1.75 10.1625C1.1 9.2875 0.645833 8.48333 0.3875 7.75C0.129167 7.01667 0 6.26667 0 5.5C0 3.93333 0.525 2.625 1.575 1.575C2.625 0.525 3.93333 0 5.5 0C6.36667 0 7.19167 0.183333 7.975 0.55C8.75833 0.916667 9.43333 1.43333 10 2.1C10.5667 1.43333 11.2417 0.916667 12.025 0.55C12.8083 0.183333 13.6333 0 14.5 0C16.0667 0 17.375 0.525 18.425 1.575C19.475 2.625 20 3.93333 20 5.5C20 6.26667 19.8708 7.01667 19.6125 7.75C19.3542 8.48333 18.9 9.2875 18.25 10.1625C17.6 11.0375 16.725 12.025 15.625 13.125C14.525 14.225 13.1333 15.5333 11.45 17.05L10 18.35ZM10 15.65C11.6 14.2167 12.9167 12.9875 13.95 11.9625C14.9833 10.9375 15.8 10.0458 16.4 9.2875C17 8.52917 17.4167 7.85417 17.65 7.2625C17.8833 6.67083 18 6.08333 18 5.5C18 4.5 17.6667 3.66667 17 3C16.3333 2.33333 15.5 2 14.5 2C13.7167 2 12.9917 2.22083 12.325 2.6625C11.6583 3.10417 11.2 3.66667 10.95 4.35H9.05C8.8 3.66667 8.34167 3.10417 7.675 2.6625C7.00833 2.22083 6.28333 2 5.5 2C4.5 2 3.66667 2.33333 3 3C2.33333 3.66667 2 4.5 2 5.5C2 6.08333 2.11667 6.67083 2.35 7.2625C2.58333 7.85417 3 8.52917 3.6 9.2875C4.2 10.0458 5.01667 10.9375 6.05 11.9625C7.08333 12.9875 8.4 14.2167 10 15.65Z' fill='black'/%3e%3c/svg%3e ");
+        top: 2px;
+        right: 2px;
+        cursor: pointer;
+    }
+}
+</style>
