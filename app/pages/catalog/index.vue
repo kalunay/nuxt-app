@@ -25,10 +25,8 @@
         }
     }
 
-    onMounted(async () => {
-        const listProducts: Array<IProducts> = await catalog.getProducts;
-        products.value = [...listProducts];
-    })
+    const listProducts: Array<IProducts> = await catalog.getProducts;
+    products.value = [...listProducts];
 
 </script>
 
